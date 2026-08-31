@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aufwandsschätzer – mh anwälte</title>
+<meta name="robots" content="noindex">
+<style>html,body{margin:0;background:#F4F4F4}body{padding:28px 18px}</style>
+</head>
+<body>
+<!-- ============================================================= -->
+<!--  mh anwälte · Aufwandsschätzer (Stunden) — WordPress-Einbettung -->
+<!--  Einfügen als Enfold "Code-Block" oder Gutenberg "Custom HTML". -->
+<!--  Werte anpassen: siehe CONFIG ganz oben im <script>.            -->
+<!-- ============================================================= -->
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap');
+
+.mha{
+  --orange:#FF5900; --orange-dark:#CC4700; --orange-soft:#FFE7DA;
+  --gold:#EFBB20; --dark:#2C353D; --ink:#333333; --soft:#616161; --faint:#9AA0A6;
+  --line:#D8D8D8; --line-soft:#EDEDED; --card:#FFFFFF; --bg:#F4F4F4; --radius:6px;
+  font-family:'Open Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  color:var(--ink); line-height:1.5; font-size:15px; max-width:1080px; margin:0 auto;
+}
+.mha *{box-sizing:border-box}
+.mha .tnum{font-variant-numeric:tabular-nums}
+
+.mha .head{margin:0 0 18px}
+.mha .h{font-family:'Open Sans',sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(20px,3vw,28px);line-height:1.15;margin:0 0 12px;display:inline-block;border-bottom:3px solid var(--gold);padding-bottom:8px;color:var(--ink)}
+.mha .sub{color:var(--soft);max-width:62ch;margin:0;font-size:15px}
+
+.mha .grid{display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start}
+@media (max-width:820px){.mha .grid{grid-template-columns:1fr}}
+
+/* employee calculator */
+.mha .empcard{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--orange);border-radius:var(--radius);padding:18px 20px;margin-bottom:16px}
+.mha .empcard .lbl{font-weight:700;font-size:15px}
+.mha .empcard .desc{font-size:12.5px;color:var(--faint);margin-top:2px}
+.mha .emprow{display:flex;align-items:center;gap:16px;margin-top:14px}
+.mha .emprow input[type=range]{-webkit-appearance:none;appearance:none;height:4px;border-radius:4px;background:var(--line);flex:1;cursor:pointer}
+.mha .emprow input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--orange);border:3px solid #fff;box-shadow:0 1px 4px rgba(255,89,0,.45);cursor:pointer}
+.mha .emprow input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--orange);border:3px solid #fff;cursor:pointer}
+.mha .empnum{font-family:inherit;font-size:16px;font-weight:700;font-variant-numeric:tabular-nums;width:76px;padding:8px 10px;border:1px solid var(--line);border-radius:var(--radius);text-align:right;color:var(--ink);background:#fff}
+.mha .empnum:focus{outline:2px solid var(--orange);outline-offset:1px;border-color:var(--orange)}
+.mha .emprow .suffix{color:var(--soft);font-size:13px;white-space:nowrap}
+
+/* area panels */
+.mha .area{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:14px;overflow:hidden}
+.mha .area-head{display:flex;align-items:center;gap:11px;padding:14px 18px;cursor:pointer;user-select:none}
+.mha .area-head .dot{width:11px;height:11px;border-radius:3px;flex:none}
+.mha .area-head .nm{font-weight:700;font-size:15px;flex:1;color:var(--ink)}
+.mha .area-head .mt{font-size:12px;color:var(--faint);font-variant-numeric:tabular-nums;white-space:nowrap}
+.mha .area-head .cv{color:var(--faint);transition:transform .2s;flex:none}
+.mha .area.collapsed .cv{transform:rotate(-90deg)}
+.mha .area.collapsed .area-body{display:none}
+
+.mha .it{display:flex;gap:12px;padding:11px 18px;border-top:1px solid var(--line-soft);align-items:center}
+.mha .it label{position:relative;flex:none;width:20px;height:20px;cursor:pointer}
+.mha .it label input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
+.mha .it label .bx{position:absolute;inset:0;border:1.5px solid var(--line);border-radius:5px;background:#fff;transition:.15s}
+.mha .it label input:checked + .bx{background:var(--orange);border-color:var(--orange)}
+.mha .it label input:checked + .bx::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.mha .it .tt{flex:1;font-size:14px;color:var(--ink)}
+.mha .it.calc .tt{font-weight:700}
+.mha .it.off .tt{color:var(--faint)}
+.mha .it .hh{font-size:12px;color:var(--soft);font-variant-numeric:tabular-nums;white-space:nowrap}
+.mha .it .hh b{color:var(--orange-dark)}
+
+/* result */
+.mha .res{position:sticky;top:16px;background:var(--dark);color:#fff;border-radius:var(--radius);padding:24px 22px;overflow:hidden;position:relative}
+.mha .res::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--gold))}
+.mha .res .cap{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9fb0bc;margin:0 0 6px}
+.mha .res .big{font-weight:800;font-size:46px;line-height:1;font-variant-numeric:tabular-nums}
+.mha .res .big .u{font-size:16px;font-weight:600;color:#c5d0d8;margin-left:6px}
+.mha .res .pm{font-size:13.5px;color:#9fb0bc;margin-top:6px}
+.mha .res .bar{height:8px;border-radius:5px;background:#3a4651;display:flex;overflow:hidden;margin:18px 0 0}
+.mha .res .bar span{display:block;height:100%}
+.mha .res .leg{display:flex;flex-direction:column;gap:5px;margin-top:12px;font-size:12px;color:#9fb0bc}
+.mha .res .leg .r{display:flex;align-items:center;gap:8px}
+.mha .res .leg .d{width:9px;height:9px;border-radius:2px;flex:none}
+.mha .res .leg .r .v{margin-left:auto;font-variant-numeric:tabular-nums;color:#c5d0d8}
+.mha .cta{display:block;text-align:center;margin-top:20px;background:var(--orange);color:#fff;text-decoration:none;font-weight:700;padding:13px 16px;border-radius:var(--radius);letter-spacing:.02em;transition:background .15s}
+.mha .cta:hover{background:var(--orange-dark);color:#fff}
+.mha .res .nt{font-size:11px;color:#7e8c98;margin-top:14px;line-height:1.5}
+</style>
+
+<div class="mha">
+  <div class="head">
+    <h3 class="h">Wie viel rechtliche Betreuung braucht Ihr Unternehmen?</h3>
+    <p class="sub">Stellen Sie Ihre Mitarbeiterzahl ein und wählen Sie die Bereiche, in denen wir Sie laufend entlasten sollen. Sie sehen sofort den geschätzten jährlichen Beratungsaufwand. Klar, kantig, kompetent — sprechen wir über die Details.</p>
+  </div>
+
+  <div class="grid">
+    <div>
+      <div class="empcard">
+        <div class="lbl">Ihre Mitarbeiterzahl</div>
+        <div class="desc">Der laufende arbeitsrechtliche Aufwand wächst mit Ihrer Belegschaft.</div>
+        <div class="emprow">
+          <input type="range" id="mhaEmpRange" min="1" max="50" step="1" value="7">
+          <input type="number" id="mhaEmpNum" class="empnum" min="0" step="1" value="7">
+          <span class="suffix">Mitarbeiter</span>
+        </div>
+      </div>
+      <div id="mhaAreas"></div>
+    </div>
+
+    <div>
+      <div class="res">
+        <p class="cap">Geschätzter laufender Beratungsaufwand</p>
+        <div class="big tnum"><span id="mhaHours">0</span><span class="u">Std./Jahr</span></div>
+        <div class="pm">≈ <span id="mhaHpm" class="tnum">0</span> Std./Monat</div>
+        <div class="bar" id="mhaBar"></div>
+        <div class="leg" id="mhaLegend"></div>
+        <a class="cta" id="mhaCta" href="https://www.mhanwaelte.de/ueber-uns-mh-anwaelte-frankfurt-am-main/kontakt/">Einfach Kontakt aufnehmen</a>
+        <div class="nt">Unverbindliche Aufwandsschätzung für die außergerichtliche, laufende Beratung. Gerichtliche Tätigkeit und größere Einzelprojekte werden gesondert abgerechnet (gerichtlich nach RVG).</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // ============ CONFIG — hier alles einstellbar ============
+  var CONFIG = {
+    factorPerEmployee: 1.5,   // Arbeitsrecht: Std. je Mitarbeiter / Jahr (laufend)
+    defaultEmployees: 7,
+    areas: [
+      { name:"Arbeitsrecht", color:"#FF5900", items:[
+        {t:"Arbeitsverträge erstellen & pflegen", h:4},
+        {t:"Freelancer-Verträge / Scheinselbstständigkeit", h:4},
+        {t:"Remote-/Homeoffice-Vereinbarungen", h:2},
+        {t:"Mitarbeiterbeteiligung (VSOP/ESOP)", h:3}
+      ]},
+      { name:"Gesellschaftsrecht", color:"#EFBB20", items:[
+        {t:"Gesellschafterbeschlüsse & Protokolle", h:2},
+        {t:"Geschäftsführer-Anstellungsvertrag", h:2}
+      ]},
+      { name:"Werk- / Dienstvertragsrecht", color:"#2C353D", items:[
+        {t:"Kundenverträge Software/Entwicklung", h:5},
+        {t:"SLAs, Wartungs- & Supportverträge", h:3},
+        {t:"SaaS- / Cloud-Nutzungsverträge", h:3},
+        {t:"Abnahme-, Gewährleistungs- & Haftungsklauseln", h:3},
+        {t:"Subunternehmer-/Freelancer-Verträge", h:2}
+      ]},
+      { name:"Vertrags- & AGB-Recht", color:"#C0571E", items:[
+        {t:"AGB erstellen & laufend pflegen", h:3},
+        {t:"NDA / Geheimhaltungsvereinbarungen", h:2},
+        {t:"Einkaufs-/Lizenz-/Hostingverträge prüfen", h:2}
+      ]},
+      { name:"Datenschutz (DSGVO)", color:"#7A8794", items:[
+        {t:"Auftragsverarbeitungsverträge (AVV)", h:3},
+        {t:"Datenschutzerklärung & Cookie-Banner", h:2},
+        {t:"TOM-Dokumentation begleiten", h:2},
+        {t:"Betroffenenanfragen & Datenpannen", h:2}
+      ]},
+      { name:"Inkasso / Forderungsmanagement", color:"#F2A03D", items:[
+        {t:"Mahnwesen & vorgerichtliche Mahnungen", h:2},
+        {t:"Außergerichtliche Beitreibung", h:2},
+        {t:"Ratenzahlungs-/Stundungsvereinbarungen", h:1}
+      ]},
+      { name:"IT- / IP- / Wettbewerbsrecht", color:"#B59415", items:[
+        {t:"Open-Source-Compliance & Lizenzen", h:3},
+        {t:"Urheber-/Nutzungsrechte an Code & Design", h:2}
+      ]}
+    ]
+  };
+  // =========================================================
+
+  var root=document.currentScript ? document.currentScript.previousElementSibling : null;
+  // robust root lookup:
+  root=document.querySelector(".mha");
+  if(!root) return;
+  var areasEl=root.querySelector("#mhaAreas");
+
+  CONFIG.areas.forEach(function(area,ai){
+    var sec=document.createElement("div"); sec.className="area";
+    var head='<div class="area-head"><span class="dot" style="background:'+area.color+'"></span>'+
+             '<span class="nm">'+area.name+'</span><span class="mt" data-mt>0 Std./Jahr</span>'+
+             '<svg class="cv" width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>';
+    var body='<div class="area-body">';
+    if(ai===0){
+      body+='<div class="it calc" data-area="0" data-calc="1">'+
+              '<label><input type="checkbox" checked><span class="bx"></span></label>'+
+              '<span class="tt">Laufende Betreuung je Mitarbeiter</span>'+
+              '<span class="hh"><b data-emph>0</b> Std./J.</span></div>';
+    }
+    area.items.forEach(function(it){
+      body+='<div class="it" data-area="'+ai+'" data-h="'+it.h+'">'+
+              '<label><input type="checkbox" checked><span class="bx"></span></label>'+
+              '<span class="tt">'+it.t+'</span>'+
+              '<span class="hh"><b>'+it.h+'</b> Std./J.</span></div>';
+    });
+    body+='</div>';
+    sec.innerHTML=head+body;
+    sec.querySelector(".area-head").addEventListener("click",function(e){
+      if(e.target.closest(".it")) return; sec.classList.toggle("collapsed");
+    });
+    areasEl.appendChild(sec);
+  });
+
+  var range=root.querySelector("#mhaEmpRange"), num=root.querySelector("#mhaEmpNum");
+  var emphEl=root.querySelector("[data-emph]");
+  range.value=CONFIG.defaultEmployees; num.value=CONFIG.defaultEmployees;
+
+  function empHours(){ return Math.round((parseFloat(num.value)||0)*CONFIG.factorPerEmployee*10)/10; }
+
+  function recalc(){
+    if(emphEl) emphEl.textContent=empHours();
+    var total=0, segs=[];
+    root.querySelectorAll(".area").forEach(function(sec){
+      var secH=0, ai=null, color=sec.querySelector(".dot").style.background, name=sec.querySelector(".nm").textContent;
+      sec.querySelectorAll(".it").forEach(function(it){
+        var on=it.querySelector("input").checked;
+        it.classList.toggle("off",!on);
+        if(!on) return;
+        var h = it.dataset.calc ? empHours() : (parseFloat(it.dataset.h)||0);
+        secH+=h;
+      });
+      total+=secH;
+      sec.querySelector("[data-mt]").textContent=(Math.round(secH*10)/10)+" Std./Jahr";
+      segs.push({h:secH,color:color,name:name});
+    });
+    root.querySelector("#mhaHours").textContent=Math.round(total*10)/10;
+    root.querySelector("#mhaHpm").textContent=(Math.round(total/12*10)/10).toString().replace(".",",");
+    var bar=root.querySelector("#mhaBar"), leg=root.querySelector("#mhaLegend");
+    bar.innerHTML=""; leg.innerHTML="";
+    if(total>0){
+      segs.forEach(function(s){
+        if(s.h<=0) return;
+        var sp=document.createElement("span"); sp.style.width=(s.h/total*100)+"%"; sp.style.background=s.color; bar.appendChild(sp);
+        var r=document.createElement("div"); r.className="r";
+        r.innerHTML='<span class="d" style="background:'+s.color+'"></span><span>'+s.name+'</span><span class="v">'+(Math.round(s.h*10)/10)+' Std.</span>';
+        leg.appendChild(r);
+      });
+    }
+  }
+
+  range.addEventListener("input",function(){ num.value=range.value; recalc(); });
+  num.addEventListener("input",function(){ var v=parseFloat(num.value)||0; if(v<=parseInt(range.max,10)) range.value=v; recalc(); });
+  areasEl.addEventListener("change",function(e){ if(e.target.type==="checkbox") recalc(); });
+
+  recalc();
+})();
+</script>
+
+<script>
+/* Meldet die Höhe an die einbettende Seite (iframe-Autohöhe) */
+(function(){
+  function send(){ try{ parent.postMessage({mhaHeight:document.documentElement.scrollHeight},'*'); }catch(e){} }
+  window.addEventListener('load',send);
+  window.addEventListener('resize',send);
+  document.addEventListener('click',function(){ setTimeout(send,60); });
+  document.addEventListener('input',function(){ setTimeout(send,60); });
+  setTimeout(send,400);
+})();
+</script>
+
+</body>
+</html>
