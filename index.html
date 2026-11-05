@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aufwandsschätzer – mh anwälte</title>
-<meta name="robots" content="noindex">
-<style>html,body{margin:0;background:#F4F4F4}body{padding:28px 18px}</style>
-</head>
-<body>
 <!-- ============================================================= -->
-<!--  mh anwälte · Aufwandsschätzer (Stunden) — WordPress-Einbettung -->
-<!--  Einfügen als Enfold "Code-Block" oder Gutenberg "Custom HTML". -->
-<!--  Werte anpassen: siehe CONFIG ganz oben im <script>.            -->
+<!--  mh anwälte · Aufwandsschätzer (Stunden) — WordPress / GitHub   -->
+<!--  Staffel-/Rechenwerte: siehe CONFIG.T ganz oben im <script>.    -->
 <!-- ============================================================= -->
 
 <style>
@@ -20,33 +9,22 @@
 .mha{
   --orange:#FF5900; --orange-dark:#CC4700; --orange-soft:#FFE7DA;
   --gold:#EFBB20; --dark:#2C353D; --ink:#333333; --soft:#616161; --faint:#9AA0A6;
-  --line:#D8D8D8; --line-soft:#EDEDED; --card:#FFFFFF; --bg:#F4F4F4; --radius:6px;
+  --line:#D8D8D8; --line-soft:#EDEDED; --card:#FFFFFF; --radius:6px;
   font-family:'Open Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   color:var(--ink); line-height:1.5; font-size:15px; max-width:1080px; margin:0 auto;
 }
 .mha *{box-sizing:border-box}
 .mha .tnum{font-variant-numeric:tabular-nums}
-
 .mha .head{margin:0 0 18px}
-.mha .h{font-family:'Open Sans',sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(20px,3vw,28px);line-height:1.15;margin:0 0 12px;display:inline-block;border-bottom:3px solid var(--gold);padding-bottom:8px;color:var(--ink)}
+.mha .h{font-weight:800;text-transform:uppercase;font-size:clamp(20px,3vw,28px);line-height:1.15;margin:0 0 12px;display:inline-block;border-bottom:3px solid var(--gold);padding-bottom:8px;color:var(--ink)}
 .mha .sub{color:var(--soft);max-width:62ch;margin:0;font-size:15px}
-
 .mha .grid{display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start}
 @media (max-width:820px){.mha .grid{grid-template-columns:1fr}}
 
-/* employee calculator */
-.mha .empcard{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--orange);border-radius:var(--radius);padding:18px 20px;margin-bottom:16px}
-.mha .empcard .lbl{font-weight:700;font-size:15px}
-.mha .empcard .desc{font-size:12.5px;color:var(--faint);margin-top:2px}
-.mha .emprow{display:flex;align-items:center;gap:16px;margin-top:14px}
-.mha .emprow input[type=range]{-webkit-appearance:none;appearance:none;height:4px;border-radius:4px;background:var(--line);flex:1;cursor:pointer}
-.mha .emprow input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--orange);border:3px solid #fff;box-shadow:0 1px 4px rgba(255,89,0,.45);cursor:pointer}
-.mha .emprow input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--orange);border:3px solid #fff;cursor:pointer}
-.mha .empnum{font-family:inherit;font-size:16px;font-weight:700;font-variant-numeric:tabular-nums;width:76px;padding:8px 10px;border:1px solid var(--line);border-radius:var(--radius);text-align:right;color:var(--ink);background:#fff}
-.mha .empnum:focus{outline:2px solid var(--orange);outline-offset:1px;border-color:var(--orange)}
-.mha .emprow .suffix{color:var(--soft);font-size:13px;white-space:nowrap}
+.mha input[type=range]{-webkit-appearance:none;appearance:none;height:4px;border-radius:4px;background:var(--line);cursor:pointer}
+.mha input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--orange);border:3px solid #fff;box-shadow:0 1px 4px rgba(255,89,0,.45);cursor:pointer}
+.mha input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--orange);border:3px solid #fff;cursor:pointer}
 
-/* area panels */
 .mha .area{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:14px;overflow:hidden}
 .mha .area-head{display:flex;align-items:center;gap:11px;padding:14px 18px;cursor:pointer;user-select:none}
 .mha .area-head .dot{width:11px;height:11px;border-radius:3px;flex:none}
@@ -56,6 +34,14 @@
 .mha .area.collapsed .cv{transform:rotate(-90deg)}
 .mha .area.collapsed .area-body{display:none}
 
+.mha .slbar{display:flex;align-items:center;gap:14px;padding:14px 18px;border-top:1px solid var(--line-soft);background:#FFF6F1}
+.mha .slbar .lb{font-weight:700;font-size:13px;color:var(--ink);white-space:nowrap}
+.mha .slbar input[type=range]{flex:1}
+.mha .slbar .slnum{font-family:inherit;font-size:16px;font-weight:700;font-variant-numeric:tabular-nums;width:72px;padding:7px 9px;border:1px solid var(--line);border-radius:var(--radius);text-align:right;color:var(--ink);background:#fff}
+.mha .slbar .slnum:focus{outline:2px solid var(--orange);outline-offset:1px;border-color:var(--orange)}
+.mha .slbar .su{font-size:12px;color:var(--soft);white-space:nowrap}
+.mha .anote{padding:10px 18px;border-top:1px solid var(--line-soft);font-size:12.5px;color:var(--soft);font-style:italic;background:#FAFAFA}
+
 .mha .it{display:flex;gap:12px;padding:11px 18px;border-top:1px solid var(--line-soft);align-items:center}
 .mha .it label{position:relative;flex:none;width:20px;height:20px;cursor:pointer}
 .mha .it label input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
@@ -63,199 +49,336 @@
 .mha .it label input:checked + .bx{background:var(--orange);border-color:var(--orange)}
 .mha .it label input:checked + .bx::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
 .mha .it .tt{flex:1;font-size:14px;color:var(--ink)}
-.mha .it.calc .tt{font-weight:700}
 .mha .it.off .tt{color:var(--faint)}
 .mha .it .hh{font-size:12px;color:var(--soft);font-variant-numeric:tabular-nums;white-space:nowrap}
 .mha .it .hh b{color:var(--orange-dark)}
 
-/* result */
 .mha .res{position:sticky;top:16px;background:var(--dark);color:#fff;border-radius:var(--radius);padding:24px 22px;overflow:hidden;position:relative}
 .mha .res::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--gold))}
 .mha .res .cap{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9fb0bc;margin:0 0 6px}
-.mha .res .big{font-weight:800;font-size:46px;line-height:1;font-variant-numeric:tabular-nums}
+.mha .res .big{font-weight:800;font-size:44px;line-height:1;font-variant-numeric:tabular-nums}
 .mha .res .big .u{font-size:16px;font-weight:600;color:#c5d0d8;margin-left:6px}
-.mha .res .pm{font-size:13.5px;color:#9fb0bc;margin-top:6px}
+.mha .split{display:flex;gap:8px;margin-top:16px}
+.mha .split > div{flex:1;background:#243039;border-radius:5px;padding:10px 6px;text-align:center}
+.mha .split .sv{display:block;font-weight:800;font-size:18px;font-variant-numeric:tabular-nums}
+.mha .split .sl{display:block;font-size:10px;color:#9fb0bc;margin-top:2px}
 .mha .res .bar{height:8px;border-radius:5px;background:#3a4651;display:flex;overflow:hidden;margin:18px 0 0}
 .mha .res .bar span{display:block;height:100%}
 .mha .res .leg{display:flex;flex-direction:column;gap:5px;margin-top:12px;font-size:12px;color:#9fb0bc}
 .mha .res .leg .r{display:flex;align-items:center;gap:8px}
 .mha .res .leg .d{width:9px;height:9px;border-radius:2px;flex:none}
 .mha .res .leg .r .v{margin-left:auto;font-variant-numeric:tabular-nums;color:#c5d0d8}
-.mha .cta{display:block;text-align:center;margin-top:20px;background:var(--orange);color:#fff;text-decoration:none;font-weight:700;padding:13px 16px;border-radius:var(--radius);letter-spacing:.02em;transition:background .15s}
+.mha .btnrow{display:flex;gap:8px;margin-top:20px}
+.mha .cta{flex:1;font-family:inherit;text-align:center;background:var(--orange);color:#fff;border:none;text-decoration:none;font-weight:700;font-size:14px;padding:13px 14px;border-radius:var(--radius);cursor:pointer;transition:background .15s}
 .mha .cta:hover{background:var(--orange-dark);color:#fff}
+.mha .cta2{flex:none;font-family:inherit;background:transparent;border:1px solid #55626d;color:#cdd6dd;font-weight:600;font-size:13px;padding:13px 14px;border-radius:var(--radius);cursor:pointer}
+.mha .cta2:hover{background:#243039}
 .mha .res .nt{font-size:11px;color:#7e8c98;margin-top:14px;line-height:1.5}
+
+/* example */
+.mha-example{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--orange);border-radius:var(--radius);padding:22px 24px;margin-top:8px}
+.mha-example h3{font-weight:800;text-transform:uppercase;font-size:16px;margin:0 0 10px;color:var(--ink);border-bottom:3px solid var(--gold);display:inline-block;padding-bottom:6px}
+.mha-example p{color:var(--soft);margin:10px 0;font-size:14px}
+.mha-example b{color:var(--ink)}
+.mha-example ul{margin:10px 0;padding-left:20px;color:var(--ink);font-size:14px}
+.mha-example li{margin:6px 0}
+.mha-example .q{color:var(--orange-dark);font-weight:600}
+
+/* modal */
+.mha-modal{position:fixed;inset:0;background:rgba(20,26,32,.55);display:none;align-items:flex-start;justify-content:center;z-index:99999;padding:26px 16px;overflow:auto}
+.mha-modal.open{display:flex}
+.mha-dialog{background:#fff;border-radius:8px;max-width:460px;width:100%;padding:26px 24px;position:relative;font-family:'Open Sans',sans-serif;color:#333}
+.mha-dialog h4{font-weight:800;text-transform:uppercase;font-size:17px;margin:0 0 4px}
+.mha-dialog .mi{font-size:12.5px;color:#777;margin:0 0 16px}
+.mha-dialog .mi2{font-size:11.5px;color:#999;margin:10px 0 0;line-height:1.5}
+.mha-x{position:absolute;top:10px;right:14px;border:none;background:none;font-size:24px;line-height:1;cursor:pointer;color:#999}
+.mha-fg{margin-bottom:11px}
+.mha-fg label{display:block;font-size:12.5px;font-weight:600;margin-bottom:4px;color:#333}
+.mha-fg input,.mha-fg textarea{width:100%;padding:9px 11px;border:1px solid #D8D8D8;border-radius:6px;font-family:inherit;font-size:14px;color:#333}
+.mha-fg input:focus,.mha-fg textarea:focus{outline:2px solid #FF5900;outline-offset:1px;border-color:#FF5900}
+.mha-dialog .cta{display:block;width:100%;margin-top:6px}
+
+@media print{
+  .mha .btnrow,.mha-modal,.mha .cta,.mha .cta2,.mha .area-head .cv,.mha .slbar input[type=range]{display:none !important}
+  .mha .res{position:static;background:#fff !important;color:#000;border:1px solid #333;box-shadow:none}
+  .mha .res::before{display:none}
+  .mha .res .cap,.mha .res .pm,.mha .split .sl,.mha .res .leg,.mha .res .leg .r .v{color:#333 !important}
+  .mha .res .big,.mha .split .sv{color:#000 !important}
+  .mha .split > div{background:#F0F0F0 !important;border:1px solid #CCC}
+  .mha .area.collapsed .area-body{display:block}
+  body{background:#fff}
+}
 </style>
 
 <div class="mha">
   <div class="head">
     <h3 class="h">Wie viel rechtliche Betreuung braucht Ihr Unternehmen?</h3>
-    <p class="sub">Stellen Sie Ihre Mitarbeiterzahl ein und wählen Sie die Bereiche, in denen wir Sie laufend entlasten sollen. Sie sehen sofort den geschätzten jährlichen Beratungsaufwand. Klar, kantig, kompetent — sprechen wir über die Details.</p>
+    <p class="sub">Stellen Sie Ihre Eckdaten ein und wählen Sie die Bereiche, in denen wir Sie laufend entlasten sollen. Sie sehen sofort den geschätzten jährlichen Beratungsaufwand – und können ihn mit einer unverbindlichen Anfrage direkt an uns übermitteln. Klar, kantig, kompetent.</p>
   </div>
 
   <div class="grid">
-    <div>
-      <div class="empcard">
-        <div class="lbl">Ihre Mitarbeiterzahl</div>
-        <div class="desc">Der laufende arbeitsrechtliche Aufwand wächst mit Ihrer Belegschaft.</div>
-        <div class="emprow">
-          <input type="range" id="mhaEmpRange" min="1" max="50" step="1" value="7">
-          <input type="number" id="mhaEmpNum" class="empnum" min="0" step="1" value="7">
-          <span class="suffix">Mitarbeiter</span>
-        </div>
-      </div>
-      <div id="mhaAreas"></div>
-    </div>
-
+    <div><div id="mhaAreas"></div></div>
     <div>
       <div class="res">
         <p class="cap">Geschätzter laufender Beratungsaufwand</p>
         <div class="big tnum"><span id="mhaHours">0</span><span class="u">Std./Jahr</span></div>
-        <div class="pm">≈ <span id="mhaHpm" class="tnum">0</span> Std./Monat</div>
+        <div class="split">
+          <div><span class="sv tnum" id="mhaHpm">0</span><span class="sl">Std./Monat</span></div>
+          <div><span class="sv tnum" id="mhaHpw">0</span><span class="sl">Std./Woche</span></div>
+          <div><span class="sv tnum" id="mhaHpd">0</span><span class="sl">Std./Arbeitstag</span></div>
+        </div>
         <div class="bar" id="mhaBar"></div>
         <div class="leg" id="mhaLegend"></div>
-        <a class="cta" id="mhaCta" href="https://www.mhanwaelte.de/ueber-uns-mh-anwaelte-frankfurt-am-main/kontakt/">Einfach Kontakt aufnehmen</a>
-        <div class="nt">Unverbindliche Aufwandsschätzung für die außergerichtliche, laufende Beratung. Gerichtliche Tätigkeit und größere Einzelprojekte werden gesondert abgerechnet (gerichtlich nach RVG).</div>
+        <div class="btnrow">
+          <button class="cta" id="mhaOpen" type="button">Einfach Kontakt aufnehmen</button>
+          <button class="cta2" id="mhaPrint" type="button">Drucken</button>
+        </div>
+        <div class="nt">Unverbindliche Aufwandsschätzung für die laufende, außergerichtliche Beratung. Bereiche ohne Stundenangabe werden individuell nach Tätigkeitsfeld und Umsatz vereinbart. Gerichtliche Tätigkeit gesondert nach RVG.</div>
       </div>
     </div>
   </div>
+
+  <div class="mha-example">
+    <h3>Ihre ausgelagerte Rechtsabteilung – ein Beispiel</h3>
+    <p>Nehmen wir die <b>Muster GmbH</b>, einen IT-Dienstleister: 7 Festangestellte, 2 Freelancer, zwei Gesellschafter. Nach dieser Schätzung rund <b><span id="exJahr">0</span> Std./Jahr</b> – umgerechnet etwa <b><span id="exWoche">0</span> Std./Woche</b>. Bei aktiveren Betrieben werden daraus schnell ein bis zwei Stunden die Woche. Genug, um den Laden rechtlich sauber zu halten – ohne eigene Rechtsabteilung.</p>
+    <p><b>Ein typischer Monat – das landet bei uns auf dem Tisch:</b></p>
+    <ul>
+      <li><span class="q">„Neuer Entwickler fängt an</span> – reicht der Standardvertrag, oder brauchen wir eine andere Befristung?"</li>
+      <li><span class="q">„Ein Freelancer arbeitet faktisch nur noch für uns</span> – rutschen wir da in die Scheinselbstständigkeit?"</li>
+      <li><span class="q">„Ein Gesellschafter will einem Mitarbeiter Anteile geben</span> – wie halten wir das sauber im Beschluss fest?"</li>
+      <li><span class="q">„Kunde zahlt seit zwei Monaten nicht</span> – welches Schreiben, und ab wann wird es ernst?"</li>
+      <li><span class="q">„Kurze Freigabe einer geänderten AGB-Klausel</span>, bevor sie online geht."</li>
+    </ul>
+    <p>Das sind keine großen Mandate – das sind die vielen kleinen Fragen, die sonst liegen bleiben oder später teuer werden. Fester Ansprechpartner, bekannte Akte, kurze Wege. Ohne dass Sie bei jeder Frage überlegen müssen, ob sich der Anruf „lohnt".</p>
+  </div>
 </div>
+
+<!-- Kontakt-Formular -->
+<div class="mha-modal" id="mhaModal" aria-hidden="true"><div class="mha" style="max-width:none;margin:0"><div class="mha-dialog">
+  <button class="mha-x" id="mhaClose" type="button" aria-label="Schließen">&times;</button>
+  <h4>Unverbindlich anfragen</h4>
+  <p class="mi">Ihre Auswahl und der geschätzte Aufwand werden automatisch mitgeschickt.</p>
+  <div class="mha-fg"><label>Name *</label><input id="fName" type="text"></div>
+  <div class="mha-fg"><label>E-Mail *</label><input id="fMail" type="email"></div>
+  <div class="mha-fg"><label>Telefon</label><input id="fTel" type="text"></div>
+  <div class="mha-fg"><label>Unternehmen</label><input id="fFirma" type="text"></div>
+  <div class="mha-fg"><label>Umsatz pro Jahr</label><input id="fUmsatz" type="text" placeholder="z. B. 1,2 Mio. €"></div>
+  <div class="mha-fg"><label>Branche</label><input id="fBranche" type="text" placeholder="z. B. IT-Dienstleistung, Gebäudereinigung …"></div>
+  <div class="mha-fg"><label>Genaue Tätigkeitsbeschreibung</label><textarea id="fTaetig" rows="3" placeholder="Was macht Ihr Unternehmen konkret?"></textarea></div>
+  <button class="cta" id="mhaSend" type="button">Anfrage senden</button>
+  <p class="mi2">Mit dem Absenden öffnet sich Ihr E-Mail-Programm mit der vorbereiteten Anfrage an info@mhanwaelte.de.</p>
+</div></div></div>
 
 <script>
 (function(){
-  // ============ CONFIG — hier alles einstellbar ============
+  // ============ CONFIG — Rechenwerte hier einstellbar ============
   var CONFIG = {
-    factorPerEmployee: 1.5,   // Arbeitsrecht: Std. je Mitarbeiter / Jahr (laufend)
-    defaultEmployees: 7,
+    kontaktEmail: "info@mhanwaelte.de",
+    T: {
+      betreuung: [2.0, 1.5, 0.5],                 // Laufende Betreuung je MA: 1-2 / 3-10 / ab 11
+      vertraege: { basisVertraege:1, vertraegePro15:2,
+        satz:[ {max:5,h:4.0},{max:15,h:3.5},{max:30,h:3.0},{max:45,h:2.5},{max:1e9,h:2.0} ] },
+      freelancerProVertrag: 2.0,                  // 2 h je Freelancer-/Subunternehmervertrag
+      beteiligungPer10: 5.0,                      // 5 h je angefangene 10 MA
+      remoteFlat: 2.0,                            // pauschal 2 h, wenn vorhanden
+      gsVersammlung: { ein:2.0, zwei:3.0, dreiVier:4.0, jeWeitererAb5:0.25 },
+      zeit: { wochenProJahr:52, arbeitstageProJahr:220 }
+    },
     areas: [
-      { name:"Arbeitsrecht", color:"#FF5900", items:[
-        {t:"Arbeitsverträge erstellen & pflegen", h:4},
-        {t:"Freelancer-Verträge / Scheinselbstständigkeit", h:4},
-        {t:"Remote-/Homeoffice-Vereinbarungen", h:2},
-        {t:"Mitarbeiterbeteiligung (VSOP/ESOP)", h:3}
-      ]},
-      { name:"Gesellschaftsrecht", color:"#EFBB20", items:[
-        {t:"Gesellschafterbeschlüsse & Protokolle", h:2},
-        {t:"Geschäftsführer-Anstellungsvertrag", h:2}
-      ]},
-      { name:"Werk- / Dienstvertragsrecht", color:"#2C353D", items:[
-        {t:"Kundenverträge Software/Entwicklung", h:5},
-        {t:"SLAs, Wartungs- & Supportverträge", h:3},
-        {t:"SaaS- / Cloud-Nutzungsverträge", h:3},
-        {t:"Abnahme-, Gewährleistungs- & Haftungsklauseln", h:3},
-        {t:"Subunternehmer-/Freelancer-Verträge", h:2}
-      ]},
-      { name:"Vertrags- & AGB-Recht", color:"#C0571E", items:[
-        {t:"AGB erstellen & laufend pflegen", h:3},
-        {t:"NDA / Geheimhaltungsvereinbarungen", h:2},
-        {t:"Einkaufs-/Lizenz-/Hostingverträge prüfen", h:2}
-      ]},
-      { name:"Datenschutz (DSGVO)", color:"#7A8794", items:[
-        {t:"Auftragsverarbeitungsverträge (AVV)", h:3},
-        {t:"Datenschutzerklärung & Cookie-Banner", h:2},
-        {t:"TOM-Dokumentation begleiten", h:2},
-        {t:"Betroffenenanfragen & Datenpannen", h:2}
-      ]},
-      { name:"Inkasso / Forderungsmanagement", color:"#F2A03D", items:[
-        {t:"Mahnwesen & vorgerichtliche Mahnungen", h:2},
-        {t:"Außergerichtliche Beitreibung", h:2},
-        {t:"Ratenzahlungs-/Stundungsvereinbarungen", h:1}
-      ]},
-      { name:"IT- / IP- / Wettbewerbsrecht", color:"#B59415", items:[
-        {t:"Open-Source-Compliance & Lizenzen", h:3},
-        {t:"Urheber-/Nutzungsrechte an Code & Design", h:2}
-      ]}
+      { name:"Arbeitsrecht", color:"#FF5900",
+        sliders:[
+          {var:"N", label:"Mitarbeiterzahl", suffix:"MA", min:1, max:50, value:7},
+          {var:"F", label:"Freelancer-/Subunternehmerverträge", suffix:"Verträge", min:0, max:30, value:2}
+        ],
+        items:[
+          {t:"Laufende Betreuung je Mitarbeiter", calc:"betreuung", on:true},
+          {t:"Arbeitsverträge erstellen & pflegen", calc:"vertraege", on:true},
+          {t:"Freelancer-/Subunternehmerverträge", calc:"freelancer", on:true},
+          {t:"Remote-/Homeoffice-Vereinbarungen", calc:"remote", on:false},
+          {t:"Mitarbeiterbeteiligung (VSOP/ESOP)", calc:"beteiligung", on:false}
+        ]},
+      { name:"Gesellschaftsrecht", color:"#EFBB20",
+        sliders:[{var:"G", label:"Anzahl Gesellschafter", suffix:"GS", min:1, max:20, value:2}],
+        items:[
+          {t:"Gesellschafterversammlungen", calc:"gsversammlung", on:true},
+          {t:"Gesellschafterbeschlüsse & Protokolle", h:2, on:true},
+          {t:"Geschäftsführer-Anstellungsvertrag", h:2, on:true}
+        ]},
+      { name:"Werk- / Dienstvertragsrecht", color:"#2C353D", noHours:true,
+        note:"Pauschalierte Vereinbarung – individuell nach Tätigkeitsfeld und Umsatz.",
+        items:[
+          {t:"Kundenverträge Software/Entwicklung", on:true},
+          {t:"SLAs, Wartungs- & Supportverträge", on:true},
+          {t:"SaaS- / Cloud-Nutzungsverträge", on:true},
+          {t:"Abnahme-, Gewährleistungs- & Haftungsklauseln", on:true}
+        ]},
+      { name:"Vertrags- & AGB-Recht", color:"#C0571E", noHours:true,
+        note:"Pauschalierte Vereinbarung – individuell nach Tätigkeitsfeld und Umsatz.",
+        items:[
+          {t:"AGB erstellen & laufend pflegen", on:true},
+          {t:"NDA / Geheimhaltungsvereinbarungen", on:true},
+          {t:"Einkaufs-/Lizenz-/Hostingverträge prüfen", on:true}
+        ]},
+      { name:"Datenschutz (DSGVO)", color:"#7A8794", noHours:true,
+        note:"Pauschalierte Vereinbarung – individuell nach Tätigkeitsfeld und Umsatz.",
+        items:[
+          {t:"Auftragsverarbeitungsverträge (AVV)", on:true},
+          {t:"Datenschutzerklärung & Cookie-Banner", on:true},
+          {t:"TOM-Dokumentation begleiten", on:true},
+          {t:"Betroffenenanfragen & Datenpannen", on:true}
+        ]},
+      { name:"Inkasso / Forderungsmanagement", color:"#F2A03D", noHours:true,
+        sliders:[{var:"C", label:"Fälle pro Jahr", suffix:"Fälle", min:0, max:200, value:10}],
+        items:[
+          {t:"Mahnwesen & vorgerichtliche Mahnungen", on:true},
+          {t:"Außergerichtliche Beitreibung", on:true},
+          {t:"Ratenzahlungs-/Stundungsvereinbarungen", on:true}
+        ]}
     ]
   };
-  // =========================================================
+  // ================================================================
 
-  var root=document.currentScript ? document.currentScript.previousElementSibling : null;
-  // robust root lookup:
-  root=document.querySelector(".mha");
-  if(!root) return;
+  var T=CONFIG.T, VARS={}, LAST={total:0};
+  CONFIG.areas.forEach(function(a){ (a.sliders||[]).forEach(function(s){ VARS[s.var]=s.value; }); });
+  function clamp(x,a,b){return Math.max(a,Math.min(b,x));}
+  function fmt(x){return (Math.round(x*10)/10).toString().replace(".",",");}
+
+  function itemHours(calc){
+    var N=VARS.N||0, G=VARS.G||0, F=VARS.F||0;
+    if(calc==="betreuung"){ if(N<=0)return 0; return Math.round((clamp(N,0,2)*T.betreuung[0]+clamp(N-2,0,8)*T.betreuung[1]+Math.max(N-10,0)*T.betreuung[2])*10)/10; }
+    if(calc==="vertraege"){ if(N<=0)return 0; var V=T.vertraege;
+      var c=(N<=5)?V.basisVertraege:V.vertraegePro15*Math.ceil(N/15);
+      var rate=V.satz[V.satz.length-1].h;
+      for(var i=0;i<V.satz.length;i++){ if(N<=V.satz[i].max){ rate=V.satz[i].h; break; } }
+      return Math.round(c*rate*10)/10; }
+    if(calc==="freelancer"){ return F<=0?0:Math.round(F*T.freelancerProVertrag*10)/10; }
+    if(calc==="beteiligung"){ return N<=0?0:Math.ceil(N/10)*T.beteiligungPer10; }
+    if(calc==="remote"){ return T.remoteFlat; }
+    if(calc==="gsversammlung"){ if(G<=0)return 0; var P=T.gsVersammlung;
+      if(G===1)return P.ein; if(G===2)return P.zwei; if(G<=4)return P.dreiVier;
+      return Math.round((P.dreiVier+(G-4)*P.jeWeitererAb5)*100)/100; }
+    return 0;
+  }
+
+  var root=document.querySelector(".mha"); if(!root) return;
   var areasEl=root.querySelector("#mhaAreas");
+  var chev='<svg class="cv" width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-  CONFIG.areas.forEach(function(area,ai){
+  CONFIG.areas.forEach(function(area){
     var sec=document.createElement("div"); sec.className="area";
-    var head='<div class="area-head"><span class="dot" style="background:'+area.color+'"></span>'+
-             '<span class="nm">'+area.name+'</span><span class="mt" data-mt>0 Std./Jahr</span>'+
-             '<svg class="cv" width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>';
-    var body='<div class="area-body">';
-    if(ai===0){
-      body+='<div class="it calc" data-area="0" data-calc="1">'+
-              '<label><input type="checkbox" checked><span class="bx"></span></label>'+
-              '<span class="tt">Laufende Betreuung je Mitarbeiter</span>'+
-              '<span class="hh"><b data-emph>0</b> Std./J.</span></div>';
-    }
-    area.items.forEach(function(it){
-      body+='<div class="it" data-area="'+ai+'" data-h="'+it.h+'">'+
-              '<label><input type="checkbox" checked><span class="bx"></span></label>'+
-              '<span class="tt">'+it.t+'</span>'+
-              '<span class="hh"><b>'+it.h+'</b> Std./J.</span></div>';
+    var html='<div class="area-head"><span class="dot" style="background:'+area.color+'"></span>'+
+             '<span class="nm">'+area.name+'</span><span class="mt" data-mt>'+(area.noHours?"":"0 Std./Jahr")+'</span>'+chev+'</div>'+
+             '<div class="area-body">';
+    (area.sliders||[]).forEach(function(sl){
+      html+='<div class="slbar"><span class="lb">'+sl.label+'</span>'+
+            '<input type="range" class="slR" data-var="'+sl.var+'" min="'+sl.min+'" max="'+sl.max+'" value="'+sl.value+'">'+
+            '<input class="slnum slN" data-var="'+sl.var+'" type="number" min="0" value="'+sl.value+'"><span class="su">'+sl.suffix+'</span></div>';
     });
-    body+='</div>';
-    sec.innerHTML=head+body;
+    if(area.note){ html+='<div class="anote">'+area.note+'</div>'; }
+    area.items.forEach(function(it){
+      var hh="";
+      if(!area.noHours){ var hv=it.calc?itemHours(it.calc):it.h; hh='<span class="hh"><b>'+fmt(hv)+'</b> Std./J.</span>'; }
+      var da=area.noHours?'':(it.calc?('data-calc="'+it.calc+'"'):('data-h="'+it.h+'"'));
+      html+='<div class="it'+(it.on?"":" off")+'" '+da+'>'+
+              '<label><input type="checkbox" '+(it.on?"checked":"")+'><span class="bx"></span></label>'+
+              '<span class="tt">'+it.t+'</span>'+hh+'</div>';
+    });
+    html+='</div>';
+    sec.innerHTML=html;
     sec.querySelector(".area-head").addEventListener("click",function(e){
-      if(e.target.closest(".it")) return; sec.classList.toggle("collapsed");
+      if(e.target.closest(".it")||e.target.closest(".slbar")) return; sec.classList.toggle("collapsed");
     });
     areasEl.appendChild(sec);
   });
 
-  var range=root.querySelector("#mhaEmpRange"), num=root.querySelector("#mhaEmpNum");
-  var emphEl=root.querySelector("[data-emph]");
-  range.value=CONFIG.defaultEmployees; num.value=CONFIG.defaultEmployees;
-
-  function empHours(){ return Math.round((parseFloat(num.value)||0)*CONFIG.factorPerEmployee*10)/10; }
+  areasEl.addEventListener("input",function(e){
+    var t=e.target, v=t.dataset.var;
+    if(t.classList.contains("slR")){ VARS[v]=parseFloat(t.value)||0; var n=root.querySelector('.slN[data-var="'+v+'"]'); if(n)n.value=t.value; recalc(); }
+    else if(t.classList.contains("slN")){ var val=parseFloat(t.value)||0; VARS[v]=val; var r=root.querySelector('.slR[data-var="'+v+'"]'); if(r && val<=parseInt(r.max,10))r.value=val; recalc(); }
+  });
+  areasEl.addEventListener("change",function(e){ if(e.target.type==="checkbox") recalc(); });
 
   function recalc(){
-    if(emphEl) emphEl.textContent=empHours();
     var total=0, segs=[];
     root.querySelectorAll(".area").forEach(function(sec){
-      var secH=0, ai=null, color=sec.querySelector(".dot").style.background, name=sec.querySelector(".nm").textContent;
+      var secH=0, hasHours=false, color=sec.querySelector(".dot").style.background, name=sec.querySelector(".nm").textContent;
       sec.querySelectorAll(".it").forEach(function(it){
-        var on=it.querySelector("input").checked;
+        var on=it.querySelector("input[type=checkbox]").checked;
         it.classList.toggle("off",!on);
-        if(!on) return;
-        var h = it.dataset.calc ? empHours() : (parseFloat(it.dataset.h)||0);
-        secH+=h;
+        if(it.dataset.calc){ hasHours=true; var h=itemHours(it.dataset.calc); var b=it.querySelector(".hh b"); if(b)b.textContent=fmt(h); if(on)secH+=h; }
+        else if(it.dataset.h!==undefined){ hasHours=true; if(on)secH+=parseFloat(it.dataset.h)||0; }
       });
-      total+=secH;
-      sec.querySelector("[data-mt]").textContent=(Math.round(secH*10)/10)+" Std./Jahr";
-      segs.push({h:secH,color:color,name:name});
+      var mt=sec.querySelector("[data-mt]");
+      if(hasHours){ mt.textContent=fmt(secH)+" Std./Jahr"; segs.push({h:secH,color:color,name:name}); total+=secH; }
     });
-    root.querySelector("#mhaHours").textContent=Math.round(total*10)/10;
-    root.querySelector("#mhaHpm").textContent=(Math.round(total/12*10)/10).toString().replace(".",",");
-    var bar=root.querySelector("#mhaBar"), leg=root.querySelector("#mhaLegend");
-    bar.innerHTML=""; leg.innerHTML="";
-    if(total>0){
-      segs.forEach(function(s){
-        if(s.h<=0) return;
-        var sp=document.createElement("span"); sp.style.width=(s.h/total*100)+"%"; sp.style.background=s.color; bar.appendChild(sp);
-        var r=document.createElement("div"); r.className="r";
-        r.innerHTML='<span class="d" style="background:'+s.color+'"></span><span>'+s.name+'</span><span class="v">'+(Math.round(s.h*10)/10)+' Std.</span>';
-        leg.appendChild(r);
-      });
-    }
+    LAST.total=total;
+    root.querySelector("#mhaHours").textContent=fmt(total);
+    root.querySelector("#mhaHpm").textContent=fmt(total/12);
+    root.querySelector("#mhaHpw").textContent=fmt(total/T.zeit.wochenProJahr);
+    root.querySelector("#mhaHpd").textContent=fmt(total/T.zeit.arbeitstageProJahr);
+    var ej=root.querySelector("#exJahr"), ew=root.querySelector("#exWoche");
+    if(ej)ej.textContent=fmt(total); if(ew)ew.textContent=fmt(total/T.zeit.wochenProJahr);
+    var bar=root.querySelector("#mhaBar"), leg=root.querySelector("#mhaLegend"); bar.innerHTML=""; leg.innerHTML="";
+    if(total>0){ segs.forEach(function(s){ if(s.h<=0)return;
+      var sp=document.createElement("span"); sp.style.width=(s.h/total*100)+"%"; sp.style.background=s.color; bar.appendChild(sp);
+      var r=document.createElement("div"); r.className="r";
+      r.innerHTML='<span class="d" style="background:'+s.color+'"></span><span>'+s.name+'</span><span class="v">'+fmt(s.h)+' Std.</span>';
+      leg.appendChild(r);
+    }); }
   }
 
-  range.addEventListener("input",function(){ num.value=range.value; recalc(); });
-  num.addEventListener("input",function(){ var v=parseFloat(num.value)||0; if(v<=parseInt(range.max,10)) range.value=v; recalc(); });
-  areasEl.addEventListener("change",function(e){ if(e.target.type==="checkbox") recalc(); });
+  // ---- Zusammenfassung für die Anfrage ----
+  function summary(){
+    var L=[];
+    L.push("GESCHÄTZTER AUFWAND");
+    L.push("  "+fmt(LAST.total)+" Std./Jahr");
+    L.push("  "+fmt(LAST.total/12)+" Std./Monat  |  "+fmt(LAST.total/T.zeit.wochenProJahr)+" Std./Woche  |  "+fmt(LAST.total/T.zeit.arbeitstageProJahr)+" Std./Arbeitstag");
+    L.push("");
+    L.push("ECKDATEN");
+    L.push("  Mitarbeiter: "+(VARS.N||0)+"  |  Freelancer-/Subunternehmerverträge: "+(VARS.F||0)+"  |  Gesellschafter: "+(VARS.G||0)+"  |  Inkasso-Fälle/Jahr: "+(VARS.C||0));
+    L.push("");
+    L.push("GEWÄHLTE BEREICHE");
+    root.querySelectorAll(".area").forEach(function(sec){
+      var name=sec.querySelector(".nm").textContent, chosen=[];
+      sec.querySelectorAll(".it").forEach(function(it){
+        if(!it.querySelector("input[type=checkbox]").checked) return;
+        var t=it.querySelector(".tt").textContent;
+        var b=it.querySelector(".hh b");
+        chosen.push("    - "+t+(b?(" ("+b.textContent+" Std./J.)"):""));
+      });
+      if(chosen.length){ L.push("  "+name+":"); L.push(chosen.join("\n")); }
+    });
+    return L.join("\n");
+  }
+
+  // ---- Modal ----
+  var modal=document.getElementById("mhaModal");
+  function openModal(){ modal.classList.add("open"); modal.setAttribute("aria-hidden","false"); }
+  function closeModal(){ modal.classList.remove("open"); modal.setAttribute("aria-hidden","true"); }
+  document.getElementById("mhaOpen").addEventListener("click",openModal);
+  document.getElementById("mhaClose").addEventListener("click",closeModal);
+  modal.addEventListener("click",function(e){ if(e.target===modal) closeModal(); });
+  document.getElementById("mhaPrint").addEventListener("click",function(){ window.print(); });
+
+  document.getElementById("mhaSend").addEventListener("click",function(){
+    var g=function(id){return (document.getElementById(id).value||"").trim();};
+    var name=g("fName"), mail=g("fMail");
+    if(!name||!mail){ alert("Bitte Name und E-Mail angeben."); return; }
+    var body=
+      "KONTAKT\n"+
+      "  Name: "+name+"\n"+
+      "  E-Mail: "+mail+"\n"+
+      "  Telefon: "+g("fTel")+"\n"+
+      "  Unternehmen: "+g("fFirma")+"\n"+
+      "  Umsatz/Jahr: "+g("fUmsatz")+"\n"+
+      "  Branche: "+g("fBranche")+"\n"+
+      "  Tätigkeit: "+g("fTaetig")+"\n\n"+
+      summary()+"\n\n"+
+      "— gesendet über den Aufwandsschätzer auf mhanwaelte.de —";
+    var subject="Anfrage ausgelagerte Rechtsberatung – "+name;
+    window.location.href="mailto:"+CONFIG.kontaktEmail+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+  });
 
   recalc();
 })();
 </script>
-
-<script>
-/* Meldet die Höhe an die einbettende Seite (iframe-Autohöhe) */
-(function(){
-  function send(){ try{ parent.postMessage({mhaHeight:document.documentElement.scrollHeight},'*'); }catch(e){} }
-  window.addEventListener('load',send);
-  window.addEventListener('resize',send);
-  document.addEventListener('click',function(){ setTimeout(send,60); });
-  document.addEventListener('input',function(){ setTimeout(send,60); });
-  setTimeout(send,400);
-})();
-</script>
-
-</body>
-</html>
